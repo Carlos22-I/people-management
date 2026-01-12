@@ -1,0 +1,41 @@
+<header class="site-header">
+	<div class="container">
+		<a class="brand" routerLink="/" aria-label="Inicio">
+		<!-- reemplaza por tu logo/imagen si quieres -->
+		<span class="brand-logo">EPIIS</span>
+		</a>
+
+		<!-- checkbox hack para el botón mobile -->
+		<input id="nav-toggle" type="checkbox" class="nav-toggle" aria-hidden="true" />
+
+		<label for="nav-toggle" class="nav-toggle-label" aria-hidden="false" aria-controls="main-nav" aria-expanded="false">
+		<span class="hamburger"></span>
+		</label>
+
+		<nav id="main-nav" class="nav" role="navigation">
+		<ul class="nav-list">
+			<li class="nav-item"><a class="nav-link" routerLink="/" tabindex="0">Inicio</a></li>
+			<li class="nav-item"><a class="nav-link" href="#" tabindex="0">Acerca</a></li>
+
+			<!-- Submenú (desktop: hover / mobile: clic al abrir el nav) -->
+			<li class="nav-item nav-item--has-sub">
+			<a class="nav-link" href="#" tabindex="0" aria-haspopup="true" aria-expanded="false">Servicios ▾</a>
+			<ul class="sub-list" aria-label="submenu servicios">
+				<li><a class="sub-link" href="#">Consultoría</a></li>
+				<li><a class="sub-link" href="#">Desarrollo</a></li>
+				<li><a class="sub-link" href="#">Soporte</a></li>
+			</ul>
+			</li>
+
+			<li class="nav-item"><a class="nav-link" href="#" tabindex="0">Proyectos</a></li>
+			
+			@if (!isLoggedIn) {
+				<li class="nav-item"><a class="nav-link nav-link--cta" routerLink="/login" tabindex="0">Iniciar sesión</a></li>
+			} @else {
+				<li class="nav-item"><a class="nav-link nav-link--cta" (click)="logout()" tabindex="0" style="cursor: pointer;">Cerrar sesión</a></li>
+			}
+		</ul>
+		</nav>
+	</div>
+</header>
+<router-outlet />

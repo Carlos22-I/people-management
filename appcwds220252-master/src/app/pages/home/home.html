@@ -1,0 +1,94 @@
+<div class="home-container">
+    <div class="header-actions">
+        <h2>Gestión de Personas</h2>
+        <div class="search-box">
+            <input type="text" [(ngModel)]="searchTerm" (keyup)="filter()" placeholder="Buscar por nombre o apellido..." class="search-input">
+        </div>
+        <button class="btn-primary" (click)="openModal('create')">+ Nuevo Registro</button>
+    </div>
+
+    <div class="table-card">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>DNI</th>
+                    <th>Género</th>
+                    <th>F. Nacimiento</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let p of persons">
+                    <td>{{ p.firstName }}</td>
+                    <td>{{ p.surName }}</td>
+                    <td>{{ p.dni }}</td>
+                    <td>
+                        <span [class.badge-male]="p.gender" [class.badge-female]="!p.gender">
+                            {{ p.gender ? 'Masculino' : 'Femenino' }}
+                        </span>
+                    </td>
+                    <td>{{ p.birthDate | date:'dd/MM/yyyy' }}</td>
+                    <td class="actions-cell">
+                        <button class="btn-icon edit" (click)="openModal('edit', p)" title="Editar">✏️</button>
+                        <button class="btn-icon delete" (click)="deletePerson(p.idPerson)" title="Eliminar">🗑️</button>
+                    </td>
+                </tr>
+                <tr *ngIf="persons.length === 0">
+                    <td colspan="6" class="no-data">No se encontraron resultados</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer-actions">
+        <span class="total-label">Total registros: {{ persons.length }}</span>
+        <div class="export-buttons">
+            <button (click)="exportPdf()" class="btn-export pdf">📄 PDF</button>
+            <button (click)="exportXlsx()" class="btn-export excel">📊 Excel</button>
+            <button (click)="exportTxt()" class="btn-export txt">📝 TXT</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="showModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>{{ modalMode === 'create' ? 'Nuevo Registro' : 'Editar Persona' }}</h3>
+            <button class="close-btn" (click)="closeModal()">×</button>
+        </div>
+        <form (ngSubmit)="savePerson()">
+            <div class="form-body">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input [(ngModel)]="selectedPerson.firstName" name="firstName" required placeholder="Ingrese nombre">
+                </div>
+                <div class="form-group">
+                    <label>Apellido</label>
+                    <input [(ngModel)]="selectedPerson.surName" name="surName" required placeholder="Ingrese apellido">
+                </div>
+                <div class="form-group">
+                    <label>DNI</label>
+                    <input [(ngModel)]="selectedPerson.dni" name="dni" required placeholder="Ingrese DNI">
+                </div>
+                <div class="form-group">
+                    <label>Género</label>
+                    <select [(ngModel)]="selectedPerson.gender" name="gender">
+                        <option [ngValue]="true">Masculino</option>
+                        <option [ngValue]="false">Femenino</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" [(ngModel)]="selectedPerson.birthDate" name="birthDate" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-cancel" (click)="closeModal()">Cancelar</button>
+                <button type="submit" class="btn-save">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

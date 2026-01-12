@@ -1,0 +1,69 @@
+/* NOTA: Asegúrate de que este CSS se combine con el CSS del login si usas la misma página, o úsalo de forma independiente si es una página nueva. */
+
+/* Estilo para el cuerpo de la página (fondo rojo) */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+/* Centra todo el contenido vertical y horizontalmente */
+.register-wrapper {
+  display: flex;
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  min-height: 100vh;
+  background-color: #e51d38; /* Color rojo brillante */
+}
+
+/* Estilo para la tarjeta blanca central */
+.register-card {
+  background-color: white;
+  padding: 40px 50px;
+  border-radius: 4px; /* Bordes ligeramente redondeados */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+}
+
+/* Título "Registro" */
+h2 {
+  margin-top: 0;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Contenedor de inputs (aplica la línea inferior) */
+.input-container {
+  border-bottom: 1px solid #ccc; /* Línea inferior delgada */
+  margin-bottom: 20px;
+}
+
+/* Campos de texto (inputs) */
+input {
+  border: none; /* Quitamos el borde por defecto */
+  padding: 10px 0;
+  width: 100%; /* Ocupa todo el ancho disponible */
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none; /* Quitamos el contorno azul al hacer clic */
+}
+
+/* Botón de Registrar (rojo con degradado sutil) */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background: linear-gradient(to right, #e51d38, #f54260); /* Degradado rojo */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}

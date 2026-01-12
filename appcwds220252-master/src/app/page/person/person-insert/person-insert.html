@@ -1,0 +1,39 @@
+<div class="container generalBody">
+	<div class="card">
+		<div class="card-body">
+			<form [formGroup]="formPerson">
+				<div class="row">
+					<div class="col-md-3">
+						<label for="">Nombre</label>
+						<input type="text" formControlName="firstName" class="form-control">
+					</div>
+					<div class="col-md-3">
+						<label for="">Apellido</label>
+						<input type="text" formControlName="surName" class="form-control">
+					</div>
+					<div class="col-md-3">
+						<label for="">DNI</label>
+						<input type="text" formControlName="dni" class="form-control">
+					</div>
+					<div class="col-md-3">
+						<label for="">Género</label>
+						<input type="text" formControlName="gender" class="form-control">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<label for="">Fecha de nac.</label>
+						<input type="text" formControlName="birthDate" class="form-control">
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-md-9"></div>
+					<div class="col-md-3">
+						<button type="button" class="btn btn-primary w-100" (click)="insert()">Registrar datos</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

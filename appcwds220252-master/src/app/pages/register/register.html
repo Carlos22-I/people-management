@@ -1,0 +1,40 @@
+<!-- Contenedor principal con el fondo rojo -->
+<div class="register-wrapper">
+  
+  <!-- La tarjeta blanca del formulario -->
+  <div class="register-card">
+    
+    <h2>Registro</h2>
+    
+    <!-- Campo Nombre -->
+    <div class="input-container">
+      <input placeholder="Nombre" [(ngModel)]="person.firstName">
+    </div>
+
+    <!-- Campo Apellido -->
+    <div class="input-container">
+      <input placeholder="Apellido" [(ngModel)]="person.surName">
+    </div>
+    
+    <!-- Campo DNI -->
+    <div class="input-container">
+      <input placeholder="DNI" [(ngModel)]="person.dni">
+    </div>
+    
+    <!-- Campo Género -->
+    <div class="input-container">
+      <input placeholder="Género" [(ngModel)]="person.gender">
+    </div>
+    
+    <!-- Campo Fecha de Nacimiento -->
+    <div class="input-container">
+      <!-- Usamos 'text' inicialmente para el placeholder visible, luego cambiamos a 'date' si es necesario para el binding -->
+      <input type="date" [(ngModel)]="person.birthDate" placeholder="Fecha de Nacimiento">
+    </div>
+
+    <!-- Botón de Registrar -->
+    <button (click)="register()">Registrar</button>
+
+  </div>
+
+</div>
