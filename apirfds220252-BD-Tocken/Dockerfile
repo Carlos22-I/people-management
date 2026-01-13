@@ -1,0 +1,11 @@
+# Etapa de construcción
+FROM maven:3.8.4-openjdk-17 AS build
+COPY . /app
+WORKDIR /app
+RUN mvn clean package -DskipTests
+
+# Etapa de ejecución
+FROM openjdk:17-jdk-slim
+COPY --from=build /app/target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app.jar"]
