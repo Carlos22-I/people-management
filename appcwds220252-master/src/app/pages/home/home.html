@@ -2,7 +2,8 @@
     <div class="header-actions">
         <h2>Gestión de Personas</h2>
         <div class="search-box">
-            <input type="text" [(ngModel)]="searchTerm" (keyup)="filter()" placeholder="Buscar por nombre o apellido..." class="search-input">
+            <input type="text" [(ngModel)]="searchTerm" (keyup)="filter()" placeholder="Buscar por nombre o apellido..."
+                class="search-input">
         </div>
         <button class="btn-primary" (click)="openModal('create')">+ Nuevo Registro</button>
     </div>
@@ -43,7 +44,7 @@
     </div>
 
     <div class="footer-actions">
-        <span class="total-label">Total registros: {{ persons.length }}</span>
+        <span class="total-label">Total registros (DB): {{ total }} | Mostrando: {{ persons.length }}</span>
         <div class="export-buttons">
             <button (click)="exportPdf()" class="btn-export pdf">📄 PDF</button>
             <button (click)="exportXlsx()" class="btn-export excel">📊 Excel</button>
@@ -63,7 +64,8 @@
             <div class="form-body">
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input [(ngModel)]="selectedPerson.firstName" name="firstName" required placeholder="Ingrese nombre">
+                    <input [(ngModel)]="selectedPerson.firstName" name="firstName" required
+                        placeholder="Ingrese nombre">
                 </div>
                 <div class="form-group">
                     <label>Apellido</label>

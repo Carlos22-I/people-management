@@ -13,20 +13,16 @@ export class PersonService {
 		private httpClient: HttpClient
 	) { }
 
-	public insert(personData: any): Observable<any> {
-		// 1. Obtener el token del localStorage
+	private getHeaders(): HttpHeaders {
 		const token = localStorage.getItem('token');
-
-		// 2. Crear headers con el token
-		let headers = new HttpHeaders({
-			'Content-Type': 'application/json'
-		});
-
+		let headers = new HttpHeaders();
 		if (token) {
 			headers = headers.set('Authorization', `Bearer ${token}`);
 		}
+		return headers;
+	}
 
-		console.log('Token enviado:', token); // Para depurar
+	public insert(personData: any): Observable<any> {
 
 		const payload = {
 			dto: {
@@ -35,57 +31,57 @@ export class PersonService {
 		};
 
 		// 3. Enviar como JSON
+		// 3. Enviar como JSON
 		return this.httpClient.post(`${environment.apiUrl}/person/insert`, payload, {
-			headers: headers
+			headers: this.getHeaders().set('Content-Type', 'application/json')
 		});
 	}
 
 
 	public getAll(): Observable<any> {
-		const token = localStorage.getItem('token');
-		let headers = new HttpHeaders();
-
-		if (token) {
-			headers = headers.set('Authorization', `Bearer ${token}`);
-		}
 
 		return this.httpClient.get<any[]>(`${environment.apiUrl}/person/getall`, {
-			headers: headers
+			headers: this.getHeaders()
 		});
 	}
 
 	/*aqui se agrega */
 	getById(id: string) {
-		return this.httpClient.get(`${environment.apiUrl}/person/get/${id}`);
+		return this.httpClient.get(`${environment.apiUrl}/person/get/${id}`, { headers: this.getHeaders() });
 	}
 
 	getPaged(page: number, size: number) {
 		return this.httpClient.get(
-			`${environment.apiUrl}/person/page?page=${page}&size=${size}`
+			`${environment.apiUrl}/person/page?page=${page}&size=${size}`,
+			{ headers: this.getHeaders() }
 		);
 	}
 
 	searchByName(name: string) {
 		return this.httpClient.get<any[]>(
-			`${environment.apiUrl}/person/search-name?value=${name}`
+			`${environment.apiUrl}/person/search-name?value=${name}`,
+			{ headers: this.getHeaders() }
 		);
 	}
 
 	searchBySurname(prefix: string) {
-		return this.httpClient.get(
-			`${environment.apiUrl}/person/search-surname?value=${prefix}`
+		return this.httpClient.get<any[]>(
+			`${environment.apiUrl}/person/search-surname?value=${prefix}`,
+			{ headers: this.getHeaders() }
 		);
 	}
 
 	existsDni(dni: string) {
 		return this.httpClient.get<boolean>(
-			`${environment.apiUrl}/person/exists-dni/${dni}`
+			`${environment.apiUrl}/person/exists-dni/${dni}`,
+			{ headers: this.getHeaders() }
 		);
 	}
 
 	count() {
 		return this.httpClient.get<number>(
-			`${environment.apiUrl}/person/count`
+			`${environment.apiUrl}/person/count`,
+			{ headers: this.getHeaders() }
 		);
 	}
 
@@ -97,7 +93,7 @@ export class PersonService {
 		}
 		return this.httpClient.delete(
 			`${environment.apiUrl}/person/delete/${id}`,
-			{ headers: headers }
+			{ headers: this.getHeaders() }
 		);
 	}
 	exportTxt(search: string = '') {
