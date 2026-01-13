@@ -4,7 +4,7 @@ services:
     env: java
     plan: free
     rootDirectory: apirfds220252-BD-Tocken
-    buildCommand: ./mvnw install
+    buildCommand: chmod +x mvnw && ./mvnw clean install -DskipTests
     startCommand: java -jar target/*.jar
     envVars:
       - key: JAVA_VERSION
