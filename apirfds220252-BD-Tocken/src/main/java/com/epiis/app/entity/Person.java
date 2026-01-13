@@ -17,21 +17,21 @@ import lombok.Setter;
 @Setter
 public class Person extends EntityGeneric {
 	@Id
-	@Column(name = "idPerson")
+	@Column(name = "idperson")
 	private String idPerson;
-	
-	@Column(name = "firstName")
+
+	@Column(name = "firstname")
 	private String firstName;
-	
-	@Column(name = "surName")
+
+	@Column(name = "surname")
 	private String surName;
-	
+
 	@Column(name = "dni")
 	private String dni;
-	
+
 	@Column(name = "gender")
 	private boolean gender;
-	
-	@Column(name = "birthDate")
+
+	@Column(name = "birthdate")
 	private Date birthDate;
 }

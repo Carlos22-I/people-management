@@ -11,9 +11,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class EntityGeneric {
-	@Column(name = "createdAt")
+	@Column(name = "createdat")
 	private Timestamp createdAt;
-	
-	@Column(name = "updatedAt")
+
+	@Column(name = "updatedat")
 	private Timestamp updatedAt;
 }
