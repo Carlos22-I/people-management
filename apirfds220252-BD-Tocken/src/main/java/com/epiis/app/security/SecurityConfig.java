@@ -43,13 +43,14 @@ public class SecurityConfig {
 					var corsConfig = new org.springframework.web.cors.CorsConfiguration();
 					corsConfig.setAllowCredentials(true);
 					corsConfig.addAllowedOrigin("http://localhost:4200"); // Angular Local
-					corsConfig.addAllowedOrigin("https://gestion-de-personas-iota.vercel.app"); // Verel Prod
+					corsConfig.addAllowedOrigin("https://people-management-iota.vercel.app"); // NEW Vercel Domain
+					corsConfig.addAllowedOrigin("https://gestion-de-personas-iota.vercel.app"); // Old Vercel Prod
 					corsConfig.addAllowedOrigin(
-							"https://gestion-de-personas-git-main-carlos-daniels-proyectos-f76e513c.vercel.app"); // Vercel
-																													// Preview
+							"https://people-management-git-main-carlos-daniels-projects-f76e513c.vercel.app"); // Vercel
+																												// Preview
 					corsConfig.addAllowedOrigin(
-							"https://gestion-de-personas-b4bg6523d-carlos-daniels-proyectos-f76e513c.vercel.app"); // Vercel
-																													// Other
+							"people-management-oi38a5wjn-carlos-daniels-projects-f76e513c.vercel.app"); // Vercel
+																										// Other
 					corsConfig.addAllowedHeader("*");
 					corsConfig.addAllowedMethod("*");
 					return corsConfig;
