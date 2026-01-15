@@ -42,23 +42,15 @@ public class SecurityConfig {
 				.cors(cors -> cors.configurationSource(request -> {
 					var corsConfig = new org.springframework.web.cors.CorsConfiguration();
 					corsConfig.setAllowCredentials(true);
-					corsConfig.addAllowedOrigin("http://localhost:4200"); // Angular Local
-					corsConfig.addAllowedOrigin("https://people-management-iota.vercel.app"); // NEW Vercel Domain
-					corsConfig.addAllowedOrigin("https://gestion-de-personas-iota.vercel.app"); // Old Vercel Prod
-					corsConfig.addAllowedOrigin(
-							"https://people-management-git-main-carlos-daniels-projects-f76e513c.vercel.app"); // Vercel
-																												// Preview
-					corsConfig.addAllowedOrigin(
-							"people-management-oi38a5wjn-carlos-daniels-projects-f76e513c.vercel.app"); // Vercel
-																										// Other
+					corsConfig.addAllowedOriginPattern("*"); // Allow ALL origins (fixes CORS for Postman/Cloud)
 					corsConfig.addAllowedHeader("*");
 					corsConfig.addAllowedMethod("*");
 					return corsConfig;
 				}))
 				.authorizeHttpRequests(auth -> auth
 						// Endpoints públicos
-						.requestMatchers("/api/auth/login").permitAll()
-						.requestMatchers("/person/export/**").permitAll()
+						.requestMatchers("/api/auth/**").permitAll() // Allow all auth endpoints
+						.requestMatchers("/person/export/**").permitAll() // Allow all export endpoints
 						// permitir swagger si lo usas
 						.requestMatchers(
 								"/v3/api-docs/**",
